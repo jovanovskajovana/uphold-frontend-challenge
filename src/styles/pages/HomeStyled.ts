@@ -1,20 +1,29 @@
 import styled from 'styled-components'
 
 export const HomeStyled = styled.div`
-  .input-group {
-    display: flex;
-    gap: 10px;
-  }
+  padding: 5rem 2rem;
+`
 
-  .table {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-  }
+export const InputGroup = styled.div`
+  position: relative;
+  margin-bottom: 2rem;
+`
 
-  .table-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
+export const InputSelector = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1.5rem;
+`
+
+export const Table = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+`
+
+export const TableRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `

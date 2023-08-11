@@ -39,6 +39,11 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none;
     transition: all 0.3s ease;
   }
+  
+  input,
+  textarea {
+    font-family: 'Proxima Nova', sans-serif;
+  }
 
   ul,
   menu,

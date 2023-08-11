@@ -5,7 +5,7 @@ import { InputStyled } from '../styles/components/InputStyled'
 import { getCommaSeparatedNumber } from '../utils/helpers'
 
 interface InputProps {
-  onInputChange: (n: number) => void
+  onInputChange: (amount: number) => void
 }
 
 const Input: FC<InputProps> = ({ onInputChange }) => {

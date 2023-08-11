@@ -1,14 +1,24 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { useTheme } from 'styled-components'
 
 import UpholdSdk from '../api/UpholdSdk'
 
 import Input from '../components/Input'
 
 import { Container } from '../styles/Layout'
-import { HomeStyled } from '../styles/pages/HomeStyled'
+import { BodyLarge, Headline } from '../styles/Typography'
+import {
+  HomeStyled,
+  InputGroup,
+  InputSelector,
+  Table,
+  TableRow,
+} from '../styles/pages/HomeStyled'
 
 const Home = () => {
+  const theme = useTheme()
+
   const [inputAmount, setInputAmount] = useState(0)
   const [selectedCurrency, setSelectedCurrency] = useState('USD')
 
@@ -29,9 +39,33 @@ const Home = () => {
   return (
     <HomeStyled>
       <Container column mobileColumn alignItems="center">
-        <Input onInputChange={setInputAmount} />
+        <Headline marginBottom="1.5rem" mobileMarginBottom="1.5rem">
+          Currency Converter
+        </Headline>
+        <BodyLarge
+          color={theme.textTertiary}
+          maxWidth="32rem"
+          alignCenter
+          marginBottom="3rem"
+        >
+          Receive competitive and transparent pricing with no hidden spreads.
+          See how we compare.
+        </BodyLarge>
+        <InputGroup>
+          <Input onInputChange={setInputAmount} />
 
-        <button
+          <InputSelector>
+            <button
+              onClick={() => {
+                setSelectedCurrency('EUR')
+              }}
+            >
+              Set EUR
+            </button>
+          </InputSelector>
+        </InputGroup>
+
+        {/* <button
           onClick={() => {
             setSelectedCurrency('EUR')
           }}
@@ -45,7 +79,7 @@ const Home = () => {
           }}
         >
           Set CNY
-        </button>
+        </button> 
 
         <button
           onClick={() => {
@@ -53,16 +87,16 @@ const Home = () => {
           }}
         >
           Set NZD
-        </button>
+        </button>*/}
 
-        <div className="table">
+        <Table>
           {data?.map((item, index) => (
-            <div key={index} className="table-row">
+            <TableRow key={index}>
               <p>{item.value * inputAmount}</p>
               <p>{item.currency}</p>
-            </div>
+            </TableRow>
           ))}
-        </div>
+        </Table>
       </Container>
     </HomeStyled>
   )
