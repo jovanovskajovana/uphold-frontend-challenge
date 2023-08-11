@@ -6,8 +6,8 @@
     "dev": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "eslint",
-    "lint:fix": "eslint --fix",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx}'",
     "eject": "react-scripts eject"
   },
   "dependencies": {
