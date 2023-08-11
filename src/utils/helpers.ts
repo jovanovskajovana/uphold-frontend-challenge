@@ -1,4 +1,13 @@
 import { supportedCurrencies } from '../constants/data'
 
-export const supportedCurrencyPairs = (currency: string) =>
+/**
+ * Map supported currency to match Ticker pairs.
+ */
+export const getSupportedCurrencyPairs = (currency: string) =>
   supportedCurrencies.map((item) => `${currency}${item}`)
+
+/**
+ * Format number to comma-separated digits.
+ */
+export const getCommaSeparatedNumber = (entry: number) =>
+  entry.toLocaleString('en-US', { maximumFractionDigits: 2 })

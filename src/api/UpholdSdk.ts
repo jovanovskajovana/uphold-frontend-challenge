@@ -2,7 +2,7 @@ import SDK from '@uphold/uphold-sdk-javascript'
 
 import { ValuePerCurrency } from '../interfaces/data'
 
-import { supportedCurrencyPairs } from '../utils/helpers'
+import { getSupportedCurrencyPairs } from '../utils/helpers'
 
 const sdk = new SDK({
   baseUrl: process.env.REACT_APP_UPHOLD_BASE_URL,
@@ -15,7 +15,7 @@ export default {
     const response = await sdk.getTicker(currency)
 
     const parsedResponse = response
-      .filter((item) => supportedCurrencyPairs(currency).includes(item.pair))
+      .filter((item) => getSupportedCurrencyPairs(currency).includes(item.pair))
       .map((item) => ({
         currency: item.currency,
         value: parseFloat(item.ask),

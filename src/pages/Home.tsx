@@ -3,11 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 
 import UpholdSdk from '../api/UpholdSdk'
 
+import Input from '../components/Input'
+
 import { Container } from '../styles/Layout'
 import { HomeStyled } from '../styles/pages/HomeStyled'
 
 const Home = () => {
-  const [inputAmount, setInputAmount] = useState('1')
+  const [inputAmount, setInputAmount] = useState(0)
   const [selectedCurrency, setSelectedCurrency] = useState('USD')
 
   const { isLoading, isError, data } = useQuery({
@@ -27,10 +29,7 @@ const Home = () => {
   return (
     <HomeStyled>
       <Container column mobileColumn alignItems="center">
-        <input
-          value={inputAmount}
-          onChange={(e) => setInputAmount(e.target.value)}
-        />
+        <Input onInputChange={setInputAmount} />
 
         <button
           onClick={() => {
@@ -59,7 +58,7 @@ const Home = () => {
         <div className="table">
           {data?.map((item, index) => (
             <div key={index} className="table-row">
-              <p>{item.value * parseFloat(inputAmount)}</p>
+              <p>{item.value * inputAmount}</p>
               <p>{item.currency}</p>
             </div>
           ))}
