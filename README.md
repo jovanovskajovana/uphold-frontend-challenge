@@ -1,6 +1,6 @@
 # Frontend Challenge for Uphold
 
-> [Preview](https://uphold-frontend-challenge.app/)
+> [Preview](https://uphold-frontend-challenge.netlify.app)
 
 After cloning this repo, run `yarn` to install all dependencies. Then use:
 
