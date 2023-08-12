@@ -1,9 +1,9 @@
 import { FC, useState, useCallback } from 'react'
 import debounce from 'lodash/debounce'
 
-import { InputStyled } from '../styles/components/InputStyled'
+import { InputStyled } from '../../styles/components/InputStyled'
 
-import { formatToNumber, formatToLocaleString } from '../utils/helpers'
+import { formatToNumber, formatToLocaleString } from '../../utils/helpers'
 
 interface InputProps {
   onInputChange: (amount: number) => void

@@ -23,5 +23,5 @@ root.render(
         <Home />
       </Main>
     </ThemeProvider>
-  </QueryClientProvider>
+  </QueryClientProvider>,
 )

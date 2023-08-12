@@ -1,18 +1,18 @@
 import { FC, useState } from 'react'
 import { useTheme } from 'styled-components'
 
-import { supportedCurrencies } from '../constants/data'
+import { supportedCurrencies } from '../../constants/data'
 
-import { BodySmall } from '../styles/Typography'
-import { CurrencyIcon } from '../styles/components/CurrencyStyled'
+import { BodySmall } from '../../styles/Typography'
+import { CurrencyIcon } from '../../styles/components/CurrencyStyled'
 import {
   SelectStyled,
   SelectHeader,
   SelectBody,
   SelectOption,
-} from '../styles/components/SelectStyled'
+} from '../../styles/components/SelectStyled'
 
-import Caret from './icons/Caret'
+import Caret from '../icons/Caret'
 
 interface SelectProps {
   selectedOption: string
@@ -33,12 +33,15 @@ const Select: FC<SelectProps> = ({
   }
 
   const selectedOptionData = supportedCurrencies.find(
-    (item) => item.id === selectedOption
+    (item) => item.id === selectedOption,
   )
 
   return (
     <SelectStyled>
-      <SelectHeader onClick={() => setSelectOpen(!selectOpen)}>
+      <SelectHeader
+        onClick={() => setSelectOpen(!selectOpen)}
+        data-testid="select-header"
+      >
         <CurrencyIcon
           src={selectedOptionData?.iconPath}
           alt={selectedOptionData?.id}
@@ -52,11 +55,15 @@ const Select: FC<SelectProps> = ({
         />
       </SelectHeader>
       {selectOpen && (
-        <SelectBody>
+        <SelectBody data-testid="select-body">
           {supportedCurrencies
             .filter((item) => item.id !== selectedOption)
             .map((item, index) => (
-              <SelectOption key={index} onClick={() => handleSelect(item.id)}>
+              <SelectOption
+                key={index}
+                onClick={() => handleSelect(item.id)}
+                data-testid={`select-option-${item.id}`}
+              >
                 <CurrencyIcon src={item.iconPath} alt={item.id} />
                 <BodySmall color={theme.textSecondary} weight={600}>
                   {item.id}
