@@ -1,4 +1,4 @@
-export interface Icon {
-  color?: string
+export interface IconProps {
+  fill?: string
   className?: string
 }

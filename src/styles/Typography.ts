@@ -4,7 +4,7 @@ import { breakpoints } from '../constants/breakpoints'
 
 interface TextProps {
   color?: string
-  weight?: string
+  weight?: number
   marginTop?: string
   marginRight?: string
   marginBottom?: string

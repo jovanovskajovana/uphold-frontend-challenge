@@ -5,9 +5,11 @@ import { useTheme } from 'styled-components'
 import UpholdSdk from '../api/UpholdSdk'
 
 import Input from '../components/Input'
+import Loader from '../components/Loader'
+import Select from '../components/Select'
 
 import { Container } from '../styles/Layout'
-import { BodyLarge, Headline } from '../styles/Typography'
+import { Headline, BodyLarge, BodyMedium } from '../styles/Typography'
 import {
   HomeStyled,
   InputGroup,
@@ -28,75 +30,53 @@ const Home = () => {
     refetchOnWindowFocus: false,
   })
 
-  if (isLoading) {
-    return <span>Loading...</span>
-  }
-
-  if (isError) {
-    return <span>Something went wrong</span>
-  }
-
   return (
     <HomeStyled>
       <Container column mobileColumn alignItems="center">
-        <Headline marginBottom="1.5rem" mobileMarginBottom="1.5rem">
-          Currency Converter
-        </Headline>
+        <Headline marginBottom="1.5rem">Currency Converter</Headline>
         <BodyLarge
           color={theme.textTertiary}
           maxWidth="32rem"
           alignCenter
-          marginBottom="3rem"
+          marginBottom="3.5rem"
         >
           Receive competitive and transparent pricing with no hidden spreads.
           See how we compare.
         </BodyLarge>
         <InputGroup>
           <Input onInputChange={setInputAmount} />
-
           <InputSelector>
-            <button
-              onClick={() => {
-                setSelectedCurrency('EUR')
-              }}
-            >
-              Set EUR
-            </button>
+            <Select
+              selectedOption={selectedCurrency}
+              onSelectedOptionChange={setSelectedCurrency}
+            />
           </InputSelector>
         </InputGroup>
 
-        {/* <button
-          onClick={() => {
-            setSelectedCurrency('EUR')
-          }}
-        >
-          Set EUR
-        </button>
+        {isLoading && <Loader />}
 
-        <button
-          onClick={() => {
-            setSelectedCurrency('CNY')
-          }}
-        >
-          Set CNY
-        </button> 
+        {!isLoading && isError && (
+          <BodyMedium color={theme.textDanger}>
+            Something went wrong.
+          </BodyMedium>
+        )}
 
-        <button
-          onClick={() => {
-            setSelectedCurrency('NZD')
-          }}
-        >
-          Set NZD
-        </button>*/}
-
-        <Table>
-          {data?.map((item, index) => (
-            <TableRow key={index}>
-              <p>{item.value * inputAmount}</p>
-              <p>{item.currency}</p>
-            </TableRow>
+        {!isLoading &&
+          !isError &&
+          (inputAmount === 0 ? (
+            <BodyMedium color={theme.textTertiary}>
+              Enter an amount to check the rates.
+            </BodyMedium>
+          ) : (
+            <Table>
+              {data?.map((item, index) => (
+                <TableRow key={index}>
+                  <p>{item.value * inputAmount}</p>
+                  <p>{item.currency}</p>
+                </TableRow>
+              ))}
+            </Table>
           ))}
-        </Table>
       </Container>
     </HomeStyled>
   )

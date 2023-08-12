@@ -6,6 +6,7 @@ export const InputStyled = styled.input`
   background-color: ${({ theme }) => theme.backgroundSecondary};
   border: 0;
   border-radius: 0.5rem;
+  max-width: 100%;
   padding: 0.75rem 1.5rem;
 
   ::placeholder {
