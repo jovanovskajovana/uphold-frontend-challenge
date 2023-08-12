@@ -8,9 +8,20 @@ import Input from '../components/Input'
 import Select from '../components/Select'
 import Loader from '../components/Loader'
 
+import { supportedCurrencies } from '../constants/data'
+
 import { Container } from '../styles/Layout'
 
-import { Headline, BodyLarge, BodyMedium } from '../styles/Typography'
+import {
+  Headline,
+  BodyLarge,
+  BodyMedium,
+  BodySmall,
+} from '../styles/Typography'
+import {
+  CurrencyStyled,
+  CurrencyIcon,
+} from '../styles/components/CurrencyStyled'
 import {
   HomeStyled,
   InputGroup,
@@ -18,6 +29,8 @@ import {
   Table,
   TableRow,
 } from '../styles/pages/HomeStyled'
+
+import { getCalculatedRate } from '../utils/helpers'
 
 const Home = () => {
   const theme = useTheme()
@@ -30,6 +43,9 @@ const Home = () => {
     queryFn: () => UpholdSdk.fetchCurrencies(selectedCurrency),
     refetchOnWindowFocus: false,
   })
+
+  const getCurrencyIcon = (currency: string) =>
+    supportedCurrencies.find((item) => item.id === currency)
 
   return (
     <HomeStyled>
@@ -72,8 +88,18 @@ const Home = () => {
             <Table>
               {data?.map((item, index) => (
                 <TableRow key={index}>
-                  <p>{item.value * inputAmount}</p>
-                  <p>{item.currency}</p>
+                  <BodyMedium color={theme.textSecondary} weight={600}>
+                    {getCalculatedRate(item.value, inputAmount)}
+                  </BodyMedium>
+                  <CurrencyStyled>
+                    <CurrencyIcon
+                      src={getCurrencyIcon(item.currency)?.iconPath}
+                      alt={item.currency}
+                    />
+                    <BodySmall color={theme.textSecondary} weight={600}>
+                      {item.currency}
+                    </BodySmall>
+                  </CurrencyStyled>
                 </TableRow>
               ))}
             </Table>

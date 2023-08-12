@@ -4,12 +4,12 @@ import { useTheme } from 'styled-components'
 import { supportedCurrencies } from '../constants/data'
 
 import { BodySmall } from '../styles/Typography'
+import { CurrencyIcon } from '../styles/components/CurrencyStyled'
 import {
   SelectStyled,
   SelectHeader,
   SelectBody,
   SelectOption,
-  SelectOptionIcon,
 } from '../styles/components/SelectStyled'
 
 import Caret from './icons/Caret'
@@ -39,7 +39,7 @@ const Select: FC<SelectProps> = ({
   return (
     <SelectStyled>
       <SelectHeader onClick={() => setSelectOpen(!selectOpen)}>
-        <SelectOptionIcon
+        <CurrencyIcon
           src={selectedOptionData?.iconPath}
           alt={selectedOptionData?.id}
         />
@@ -57,7 +57,7 @@ const Select: FC<SelectProps> = ({
             .filter((item) => item.id !== selectedOption)
             .map((item, index) => (
               <SelectOption key={index} onClick={() => handleSelect(item.id)}>
-                <SelectOptionIcon src={item.iconPath} alt={item.id} />
+                <CurrencyIcon src={item.iconPath} alt={item.id} />
                 <BodySmall color={theme.textSecondary} weight={600}>
                   {item.id}
                 </BodySmall>

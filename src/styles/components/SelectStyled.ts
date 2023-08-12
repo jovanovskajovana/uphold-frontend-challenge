@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
+import { CurrencyStyled } from './CurrencyStyled'
+
 export const SelectStyled = styled.div`
   position: relative;
 `
 
-export const SelectHeader = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+export const SelectHeader = styled(CurrencyStyled)`
   background-color: ${({ theme }) => theme.backgroundPrimary};
   border-radius: 1.5rem;
-  padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   cursor: pointer;
 
   .icon-caret {
@@ -38,21 +38,15 @@ export const SelectBody = styled.div`
   z-index: 1;
 `
 
-export const SelectOption = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+export const SelectOption = styled(CurrencyStyled)`
   background-color: ${({ theme }) => theme.backgroundPrimary};
   will-change: background-color;
   transition: background-color 0.15s ease-in;
-  padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   cursor: pointer;
 
   :hover {
     background-color: ${({ theme }) => theme.backgroundSecondary};
   }
-`
-
-export const SelectOptionIcon = styled.img`
-  max-width: 1.5rem;
 `
