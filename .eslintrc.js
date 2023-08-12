@@ -1,32 +1,45 @@
 module.exports = {
-  extends: ['prettier'],
-  parser: '@babel/eslint-parser',
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'prettier',
+  ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 2023,
-    ecmaFeatures: {
-      jsx: true,
-      modules: true,
-    },
-    requireConfigFile: false,
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
   env: {
     browser: true,
-    node: true,
+    es2021: true,
+    jest: true,
   },
   rules: {
     'no-console': 0,
     quotes: [2, 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+    'react/react-in-jsx-scope': 'off',
+    'spaced-comment': 'error',
+    'no-duplicate-imports': 'error',
     'prettier/prettier': [
       'error',
       {
         trailingComma: 'es5',
         singleQuote: true,
-        printWidth: 80,
+        printWidth: 100,
         endOfLine: 'lf',
         semi: false,
         tabWidth: 2,
       },
     ],
   },
-  plugins: ['prettier'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+    react: {
+      version: 'detect',
+    },
+  },
 }

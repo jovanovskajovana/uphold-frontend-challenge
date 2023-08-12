@@ -10,13 +10,7 @@ import Select from '../components/Select'
 
 import { Container } from '../styles/Layout'
 import { Headline, BodyLarge, BodyMedium } from '../styles/Typography'
-import {
-  HomeStyled,
-  InputGroup,
-  InputSelector,
-  Table,
-  TableRow,
-} from '../styles/pages/HomeStyled'
+import { HomeStyled, InputGroup, InputSelector, Table, TableRow } from '../styles/pages/HomeStyled'
 
 const Home = () => {
   const theme = useTheme()
@@ -34,14 +28,8 @@ const Home = () => {
     <HomeStyled>
       <Container column mobileColumn alignItems="center">
         <Headline marginBottom="1.5rem">Currency Converter</Headline>
-        <BodyLarge
-          color={theme.textTertiary}
-          maxWidth="32rem"
-          alignCenter
-          marginBottom="3.5rem"
-        >
-          Receive competitive and transparent pricing with no hidden spreads.
-          See how we compare.
+        <BodyLarge color={theme.textTertiary} maxWidth="32rem" alignCenter marginBottom="3.5rem">
+          Receive competitive and transparent pricing with no hidden spreads. See how we compare.
         </BodyLarge>
         <InputGroup>
           <Input onInputChange={setInputAmount} />
@@ -56,17 +44,13 @@ const Home = () => {
         {isLoading && <Loader />}
 
         {!isLoading && isError && (
-          <BodyMedium color={theme.textDanger}>
-            Something went wrong.
-          </BodyMedium>
+          <BodyMedium color={theme.textDanger}>Something went wrong.</BodyMedium>
         )}
 
         {!isLoading &&
           !isError &&
           (inputAmount === 0 ? (
-            <BodyMedium color={theme.textTertiary}>
-              Enter an amount to check the rates.
-            </BodyMedium>
+            <BodyMedium color={theme.textTertiary}>Enter an amount to check the rates.</BodyMedium>
           ) : (
             <Table>
               {data?.map((item, index) => (
