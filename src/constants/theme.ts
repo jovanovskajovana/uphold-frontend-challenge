@@ -13,6 +13,7 @@ export interface Theme {
   // background
   backgroundPrimary: string
   backgroundSecondary: string
+  backgroundHighlight: string
   // text
   textPrimary: string
   textSecondary: string
@@ -27,6 +28,7 @@ export const theme: Theme = {
   // background
   backgroundPrimary: colors.white,
   backgroundSecondary: colors.grey_400,
+  backgroundHighlight: colors.green,
   // text
   textPrimary: colors.navy_500,
   textSecondary: colors.navy_400,

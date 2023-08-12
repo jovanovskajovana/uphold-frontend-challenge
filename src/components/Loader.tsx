@@ -1,9 +1,10 @@
-import { BodyMedium } from '../styles/Typography'
-import { LoaderStyled } from '../styles/components/LoaderStyled'
+import { FC } from 'react'
 
-const Loader = () => (
+import { LoaderStyled, LoaderInner } from '../styles/components/LoaderStyled'
+
+const Loader: FC = () => (
   <LoaderStyled>
-    <BodyMedium>Loading...</BodyMedium>
+    <LoaderInner />
   </LoaderStyled>
 )
 

@@ -19,7 +19,10 @@ interface SelectProps {
   onSelectedOptionChange: (value: string) => void
 }
 
-const Select: FC<SelectProps> = ({ selectedOption, onSelectedOptionChange }) => {
+const Select: FC<SelectProps> = ({
+  selectedOption,
+  onSelectedOptionChange,
+}) => {
   const theme = useTheme()
 
   const [selectOpen, setSelectOpen] = useState(false)
@@ -29,12 +32,17 @@ const Select: FC<SelectProps> = ({ selectedOption, onSelectedOptionChange }) => 
     setSelectOpen(false)
   }
 
-  const selectedOptionData = supportedCurrencies.find((item) => item.id === selectedOption)
+  const selectedOptionData = supportedCurrencies.find(
+    (item) => item.id === selectedOption
+  )
 
   return (
     <SelectStyled>
       <SelectHeader onClick={() => setSelectOpen(!selectOpen)}>
-        <SelectOptionIcon src={selectedOptionData?.iconPath} alt={selectedOptionData?.id} />
+        <SelectOptionIcon
+          src={selectedOptionData?.iconPath}
+          alt={selectedOptionData?.id}
+        />
         <BodySmall color={theme.textSecondary} weight={600}>
           {selectedOption}
         </BodySmall>
